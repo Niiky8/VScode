@@ -1,0 +1,93 @@
+start
+	Declare input file stream Ch3_Ex5Data
+	Declare output file stream Ch3_Ex5Output
+
+	Open input file "Ch3_Ex5Data.txt"
+	Open output file "Ch3_Ex5Output.dat"
+
+	Declare Lname, Fname and salary
+	input Lname, Fname, and Salary from Ch3_Ex5Data
+	Set output format to fixed-point notation with two decimal places
+	output Fname, Lname, and Salary to Ch3_Ex5Output
+
+	Declare garbage, Lname2, Fname2 and salary2
+	input garbage, Lname2, Fname2, and Salary2 from Ch3_Ex5Data
+	Set output format to fixed-point notation with two decimal places
+	output Fname2, Lname2 and Salary2 to Ch3_Ex5Output
+
+	Declare garbage2 Lname3, Fname3 and salary3
+	input garbage2, Lname3, Fname3, and Salary3 from Ch3_Ex5Data
+	Set output format to fixed-point notation with two decimal places
+	output Fname3, Lname3, and Salary3 to Ch3_Ex5Output
+
+	Close both input and output files
+
+end
+
+
+
+
+*/
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+
+{
+
+	ifstream Ch3_Ex5Data;
+	ofstream Ch3_Ex5Output;
+	Ch3_Ex5Data.open("Ch3_Ex5Data.txt");
+	Ch3_Ex5Output.open("Ch3_Ex5Output.dat");
+
+
+	string Lname; // Lname = Last name
+	string  Fname;// Fname = First name
+	double Salary;
+
+	
+	Ch3_Ex5Data >> Lname >> Fname >> Salary;
+	cout << fixed;
+	cout << setprecision(2);
+	Ch3_Ex5Output << Fname << " " << Lname << " " << Salary << '\n';
+
+
+	string Lname2; 
+	string  Fname2;
+	double Salary2;
+	int garbage;
+
+	Ch3_Ex5Data >> garbage >> Lname2 >> Fname2 >> Salary2;
+	cout << fixed;
+	cout << setprecision(2);
+	Ch3_Ex5Output << Fname2 << " " << Lname2 << " " << Salary2 << '\n';
+
+
+	string Lname3;
+	string  Fname3;
+	double Salary3;
+	int garbage2;
+
+	Ch3_Ex5Data >> garbage2 >> Lname3 >> Fname3 >> Salary3;
+	cout << fixed;
+	cout << setprecision(2);
+	Ch3_Ex5Output << Fname3 << " " << Lname3 << " " << Salary3 << '\n';
+
+
+
+
+
+
+
+
+	Ch3_Ex5Output.close();
+	Ch3_Ex5Data.close();
+	return 0;
+
+
+}
+
+
