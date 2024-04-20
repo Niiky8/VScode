@@ -44,10 +44,7 @@ int main()
 	time = time % 60;
 	cout << time;
 
-	ifstream Ch3_Ex5Data;
-	Ch3_Ex5Data.open("c:\\Ch3\\Ch3_Ex5Data.txt");
-	Ch3_Ex5Data >> time;
-	Ch3_Ex5Data.close;
+	
 	return 0;
 
 
