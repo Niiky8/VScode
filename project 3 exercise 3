@@ -1,0 +1,48 @@
+/*Write a program that prompts the user to input an integer between 0 and 35. If the number is less than or equal to 9, the program should output the number; otherwise,
+	it should output A for 10, B for 11, C for 12,..., and Z for 35. (Hint: Use the cast operator, static_cast<char>(), for numbers >= 10.)
+    
+    start
+         diclar int UserNum, char Convert
+         output prompt for number 0-35
+         input UserNum
+         if input fails
+            output failure message
+         if UsersNum is less then or equal to 9 and UsersNum is more than or equal to 0
+            output UsersNum
+         esle if UsersNum is less then or equal to 35 and UsersNum is more than or equal to 10
+             Convert = static_cast<char>((UsersNum + 65) - 10)
+             output Convert
+         else 
+            output failure message
+    end
+    */
+#include <iostream>
+
+
+
+using namespace std;
+
+int main()
+
+{
+
+    int UsersNum;
+    cout << "Choose a number between 0-35 ";
+    cin >> UsersNum;
+    if (!cin) {
+        cout << "invailid response ";
+        return 1;
+    }
+    if (UsersNum <= 9 && UsersNum >= 0) 
+        cout << "You entered " << UsersNum << endl;
+ 
+    else if (UsersNum <= 35 && UsersNum >= 10) {
+            char Convert = static_cast<char>((UsersNum + 65) - 10);
+            cout << "Letter value " << Convert << endl;
+    }
+    else
+        cout << "invailid response ";
+    
+    return 0;
+
+}
