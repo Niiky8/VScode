@@ -1,0 +1,55 @@
+/*
+
+	
+	pseudocode
+	start
+		declare time
+		input number of seconds in the parade
+		declare hour
+		calculate number of hours 
+		output hour
+		set time as remainder
+		declare mins
+		calculate number of minutes 
+		output mins
+		set time as remainder
+		output time
+	stop
+		*/
+
+
+#include <iostream> 
+
+
+using namespace std;
+int main()
+{
+	
+
+	int time;
+	cout << "number of seconds in parade";
+	cin >> time;
+	cout << endl;
+
+	int hour;
+	hour = time / 3600;
+	cout << hour;
+	cout << ":";
+	time = time % 3600;
+
+	int min;
+	min = time / 60;
+	cout << min;
+	cout << ":";
+	time = time % 60;
+	cout << time;
+
+	ifstream Ch3_Ex5Data;
+	Ch3_Ex5Data.open("c:\\Ch3\\Ch3_Ex5Data.txt");
+	Ch3_Ex5Data >> time;
+	Ch3_Ex5Data.close;
+	return 0;
+
+
+
+}
