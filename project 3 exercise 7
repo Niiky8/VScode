@@ -1,0 +1,85 @@
+/*
+In this formula, the term  is called the discriminant.If, then the equation has a single(repeated) root.If, the equation has two real roots
+.If, the equation has two complex roots.Write a program that prompts the user to input the value of a(the coefficient of), b(the coefficient of x), and c(the constant term)
+and outputs the type of roots of the equation.Furthermore, if, the program should output the roots of the quadratic equation. (Hint : Use the function pow from 
+the header file cmath to calculate the square root.Chapter 3 explains how the function pow is used.)
+
+
+
+start 
+    output prompt for a
+    input a 
+    if input from cin fails 
+        output failure message 
+    output prompt for b
+    if input from cin fails
+        output failure message 
+    output prompt for c
+    if input from cin fails
+        output failure message
+    equation1 = (b*b) - (4 * a * c)
+    if equation1 is less then 0 
+        output There are two complex root 
+    if equation1 is more or equal to 0 
+        equation2 = ( - b + sqrt(equation1)) / (2 * a)
+        equation3 = ( - b - sqrt(equation1)) / (2 * a)
+        output equation2
+        output equation3
+end
+
+
+
+
+*/
+#include <iostream>
+
+using namespace std;
+int main() {
+  
+   
+   
+    float a;
+    cout << "For the discriminant in the quadratic formula enter the value of a ";
+    cin >> a;
+    if (!cin) {
+        cout << "The number you entered for a was not a number" << endl;
+        return 1;
+    }
+   cin.clear();
+    float b;
+    cout << "Enter the value of b " ;
+    cin >> b;
+    if (!cin) {
+        cout << "The number you entered for b was not a number" << endl;
+        return 1;
+    }
+    cin.clear();
+
+    float c;
+     cout << "Enter the value of c " ;
+    cin >> c;
+    if (!cin) {
+        cout << "The number you entered for c was not a number" << endl;
+        return 1;
+    }
+    cin.clear();
+
+    float equation1;
+    
+    equation1 = (b*b) - (4 * a * c);
+ 
+    if (equation1 < 0) {
+        cout << "There are two complex root " << endl;
+        return 1;
+    }
+
+    else if (equation1 >= 0) {
+        float equation2 = ( - b + sqrt(equation1)) / (2 * a);
+        float equation3 = ( - b - sqrt(equation1)) / (2 * a);
+        cout << "X1 = " << equation2 << endl;
+        cout << "X2 = " << equation3 << endl;
+    }
+
+ return 0;
+    
+}
