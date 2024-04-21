@@ -1,0 +1,143 @@
+ /*write a program that can be used to calculate the federal tax. The tax is calculated as follows:
+For single people, the standard exemption is $4,000; for married people, the standard exemption
+is $7,000. A person can also put up to 6% of his or her gross income in a pension plan.
+The tax rates are as follows: If the taxable income is:
+
+Between $0 and $15,000, the tax rate is 15%.
+
+Between $15,001 and $40,000, the tax is $2,250 plus 25% of the taxable income over $15,000.
+
+Over $40,000, the tax is $8,460 plus 35% of the taxable income over $40,000.
+
+Prompt the user to enter the following information:
+
+Marital status
+
+If the marital status is “married,” ask for the number of children under the age of 14
+
+Gross salary (If the marital status is “married” and both spouses have income, enter the combined salary.)
+
+Percentage of gross income contributed to a pension fund
+
+Your program must consist of at least the following functions:
+
+Function getData: This function asks the user to enter the relevant data.
+
+Function taxAmount: This function computes and returns the tax owed.
+
+To calculate the taxable income, subtract the sum of the standard exemption, 
+the amount contributed to a pension plan, and the personal exemption, which is $1,500 per person.
+(Note that if a married couple has two children under the age of 14, then the personal exemption is.)
+Declare  string marriageStat
+ double grossSal , pensionFund, taxableInc
+ Int numOfChild , standardExem, tax
+
+getData()
+taxAmount()
+    Output Tax owed
+
+ getData()
+    Accept marriageStat, grossSal, pensionFund, numOfChild, standardExem as parameters
+    Output prompt for marriage status
+    Input marriageStat
+    If marriageStat is "married":
+        Output prompt for children
+        Input numOfChild
+        standardExem = 7000
+    Else:
+        numOfChild = 1
+       standardExem = 4000
+    Output prompt for  gross salary
+    Input grossSal
+    Do
+        Output prompt for percentage of gross income is contributed to a pension fund
+        Input pensionFund
+        If pensionFund is greater than 6 or less than 0:
+            Output incorrect input.
+    Until pensionFund is between 0 and 6
+    pensionFund = pensionFund / 100
+
+taxAmount()
+    personalExem = 1500 * numOfChild
+    taxableInc = grossSal - (standardExem + personalExem)
+    taxableInc = taxableInc - grossSal * by pensionFund
+    If taxableInc is less than or equal to 20000:
+        tax = taxableInc * by 0.15
+    Else if taxableInc is less than or equal to 50000:
+        tax = (20000 * 0.15) + ((taxableInc - 20000) *  0.25)
+    Else:
+        tax = (20000 *  0.15) + (30000 *  0.25) + ((taxableInc - 50000) *  0.35)
+    If tax is less than 0:
+        tax = 0
+    Return tax
+
+
+*/
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+void getData(string marriageStat, double& grossSal, double& pensionFund, int& numOfChild, int& standardExem);
+int taxAmount(int numOfChild, int standardExem, double personalExem, double grossSal, double pensionFund);
+
+int main() {
+    string marriageStat;
+    double grossSal, pensionFund;
+    int numOfChild, standardExem;
+
+    getData(marriageStat, grossSal, pensionFund, numOfChild, standardExem);
+    double tax = taxAmount(numOfChild, standardExem,  numOfChild, grossSal, pensionFund);
+
+    cout << "Tax owed: $" << tax << endl;
+
+    return 0;
+}
+
+void getData(string marriageStat, double& grossSal, double& pensionFund, int& numOfChild, int& standardExem) {
+    cout << "What is your marital status (single/married)? ";
+    cin >> marriageStat;
+    if (marriageStat == "married") {
+        cout << "How many children (under the age of 14) do you have? ";
+        cin >> numOfChild;
+        standardExem = 7000;
+    }
+    else {
+        numOfChild = 1;
+        standardExem = 4000;
+    }
+    cout << "What is your gross salary? ";
+    cin >> grossSal;
+    cout << "What percentage of your gross income is contributed to a pension fund? (0-6%) ";
+    cin >> pensionFund;
+    do {
+        cout << "What percentage of your gross income is contributed to a pension fund? (0-6%) ";
+        cin >> pensionFund;
+        if (pensionFund > 6 || pensionFund < 0) {
+            cout << "Incorrect input. Please enter a value between 0 and 6." << endl;
+        }
+    } while (pensionFund > 6 || pensionFund < 0);
+
+    pensionFund = pensionFund / 100;
+}
+
+int taxAmount(int numOfChild, int standardExem, double personalExem, double grossSal, double pensionFund) {
+    personalExem = 1500 * numOfChild;
+    double taxableInc = grossSal - (standardExem + personalExem);
+    taxableInc = taxableInc - grossSal * pensionFund;
+    double tax = 0.0;
+
+    if (taxableInc <= 20000) {
+        tax = taxableInc * 0.15;
+    }
+    else if (taxableInc <= 50000) {
+        tax = 20000 * 0.15 + (taxableInc - 20000) * 0.25;
+    }
+    else {
+        tax = 20000 * 0.15 + 30000 * 0.25 + (taxableInc - 50000) * 0.35;
+    }
+    if (tax < 0)
+        tax = 0;
+    return tax;
+}
